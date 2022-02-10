@@ -3,8 +3,7 @@ import random
 import words
 
 word_list = words.word_list
-word_count = len(word_list)
-solution = word_list[random.randrange(0, word_count - 1)].upper()
+solution = random.choice(word_list).upper()
 pattern = re.compile("[a-zA-Z]{5}")
 loop_count = 0
 is_correct = False
