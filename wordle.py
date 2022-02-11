@@ -1,7 +1,7 @@
 import re
 import random
 import words
-from typing import TypeVar
+from typing import TypeVar, Tuple
 
 TGame = TypeVar("TGame", bound="Game")
 
@@ -41,6 +41,11 @@ class Game:
         return True
 
     def judge(self: TGame) -> bool:
+        output, ok_count = self.gen_output()
+        print(output)
+        return ok_count == 5
+
+    def gen_output(self: TGame) -> Tuple[str, int]:
         s = self.current_word.upper()
         output = ""
         ok_count = 0
@@ -53,8 +58,7 @@ class Game:
             else:
                 output += Color.WHITE + s[i]
         output += Color.END
-        print(output)
-        return ok_count == 5
+        return output, ok_count
 
 
 def main() -> None:
