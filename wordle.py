@@ -1,6 +1,9 @@
 import re
 import random
 import words
+from typing import TypeVar
+
+TGame = TypeVar("TGame", bound="Game")
 
 
 class Color:
@@ -12,7 +15,7 @@ class Color:
 
 
 class Game:
-    def __init__(self):
+    def __init__(self: TGame) -> None:
         self.word_list = words.word_list
         self.solution = random.choice(self.word_list).upper()
         self.pattern = re.compile("[a-zA-Z]{5}")
@@ -20,7 +23,7 @@ class Game:
         self.is_correct = False
         self.current_word = ""
 
-    def check_input(self):
+    def check_input(self: TGame) -> bool:
         s = self.current_word
         n = len(s)
         if n < 5:
@@ -37,7 +40,7 @@ class Game:
             return False
         return True
 
-    def judge(self):
+    def judge(self: TGame) -> bool:
         s = self.current_word.upper()
         output = ""
         ok_count = 0
@@ -54,7 +57,7 @@ class Game:
         return ok_count == 5
 
 
-def main():
+def main() -> None:
     game = Game()
     while True:
         if game.loop_count == 6:
