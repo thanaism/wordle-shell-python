@@ -60,7 +60,7 @@ class Game:
         output += Color.END
         return output, ok_count
 
-    def run(self):
+    def run(self: TGame) -> bool:
         while True:
             if self._loop_count == 6:
                 if self._is_correct:
